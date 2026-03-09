@@ -35,7 +35,7 @@ The system is built using the following components:
 - 2x Capacitive Soil Moisture Sensors (Seesaw I2C)
 - 2x Adaptercable 4-pol JST-PH to 4x dupont female 200mm
 - 16x2 LCD Display with I2C backpack
-- 6x LEDs (status indicators)
+- 6x LEDs (status indicators), RED= DRY, YELLOW = OK, BLUE = WET
 - 1x Active buzzer
 - 1x Breadboard
 - 26x Jumper wires
