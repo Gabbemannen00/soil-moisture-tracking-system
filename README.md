@@ -43,6 +43,7 @@ The system is built using the following components:
 
 ## Wiring Diagram
 
+<img width="3012" height="1740" alt="moisture_tracking_system_bb" src="https://github.com/user-attachments/assets/6fa65e25-7c38-4559-8b72-c534a8eefbc4" />
 
 
 ## Software 
