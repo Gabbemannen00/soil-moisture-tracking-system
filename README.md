@@ -69,47 +69,54 @@ Computer -> USB Micro Male -> Pico W
 
 (I2C-bus 0)
 
-Sensor Pin	 Pico W Pin
-VCC	    ->     3.3V
-GND	    ->     GND
-SDA	    ->     GP4
-SCL	    ->     GP5
+Sensor Pin	    Pico W Pin
+
+- VCC	    ->     3.3V
+- GND	    ->     GND
+- SDA	    ->     GP4
+- SCL	    ->     GP5
 
 #### Soil Moisture Sensor 2
 
 (I2C-bus 1)
 
-Sensor Pin	 Pico W Pin
-VCC	    ->     3.3V
-GND	    ->     GND
-SDA	    ->     GP2
-SCL     ->  	 GP3
+Sensor Pin	   Pico W Pin
+
+- VCC	   ->     3.3V
+- GND	   ->     GND
+- SDA	   ->     GP2
+- SCL      ->  	  GP3
 
 ### LCD 16x2 (I2C)
 
 LCD shares with the second sensor on bus 1.
 
-LCD Pin	     Pico W Pin
-VCC	    ->     3.3V
-GND	    ->     GND
-SDA	    ->     GP2
-SCL	    ->     GP3
+LCD Pin	       Pico W Pin
+
+- VCC	   ->     3.3V
+- GND	   ->     GND
+- SDA	   ->     GP2
+- SCL	   ->     GP3
 
 ### LED Status Indicators
 
 Every pot has three LEDs.
 
-Plant 1 LEDs: 
-LED Color	       Pico Pin
-Red (Dry)	   ->    GP14
-Yellow (OK)	 ->    GP15
-Blue (Wet)	 ->    GP16
+Plant 1 LEDs
 
-Plant 2 LEDs:
 LED Color	       Pico Pin
-Red (Dry)    ->	   GP17
-Yellow (OK)	 ->    GP18
-Blue (Wet)	 ->    GP19
+
+- Red (Dry)	     ->   GP14
+- Yellow (OK)	 ->   GP15
+- Blue (Wet)	 ->   GP16
+
+Plant 2 LEDs
+
+LED Color	       Pico Pin
+
+- Red (Dry)      ->	   GP17
+- Yellow (OK)	 ->    GP18
+- Blue (Wet)	 ->    GP19
 
 ### ⚠️ Obs! dont forget
 
@@ -122,13 +129,16 @@ Short leg of the LED → GND
 ### Connect the Buzzer
 
 Buzzer Pin	  Pico Pin
-    +	     ->    GP21
-    -      ->    GND
+
+ -   +	     ->    GP21
+ -   -      ->    GND
 
 ### I2C Buses 
+
 Bus	       GPIO
-I2C0	->   GP4 (SDA), GP5 (SCL)
-I2C1	->   GP2 (SDA), GP3 (SCL)
+
+- I2C0	->   GP4 (SDA), GP5 (SCL)
+- I2C1	->   GP2 (SDA), GP3 (SCL)
 
 ## Get Started
 
