@@ -130,12 +130,11 @@ Short leg of the LED → GND
 
 ### Connect the Buzzer
 
-Buzzer Pin	  Pico Pin
+Buzzer    Pico W
 
- +	     ->     GP21
- -      ->     GND
-
-
++    ->    GP21
+-    ->    GND
+ 	        
 ### I2C Buses 
 
 Bus	        GPIO
