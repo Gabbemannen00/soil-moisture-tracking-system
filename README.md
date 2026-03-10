@@ -27,6 +27,18 @@ The LCD screen displays the current soil moisture status for both plant pots. Th
 Close-up of the electronics on the breadboard including wiring of the two sensors, LCD,
 Raspberry Pi Pico W, LEDs and the buzzer.
 
+## Software 
+
+The project is written in MicroPython and runs on the Raspberry Pi Pico W.
+
+Main features:
+
+- Reads soil moisture from the two capacitive I2C sensors
+- Displays plant status on the LCD screen
+- Indicates soil condition using the LEDs
+- Triggers a buzzer when the soil becomes too dry
+- Prints sensor data to the serial terminal for debugging
+
 ## Hardware
 
 The system is built using the following components:
@@ -43,22 +55,82 @@ The system is built using the following components:
 
 ## Wiring Diagram
 
+<img width="1024" height="576" alt="Raspberry_pi_pico_w_pinout-1-1024x576" src="https://github.com/user-attachments/assets/91dd4b81-a0a1-4fae-92fb-ebea0b97bd56" />
+
 <img width="3012" height="1740" alt="moisture_tracking_system_bb" src="https://github.com/user-attachments/assets/6fa65e25-7c38-4559-8b72-c534a8eefbc4" />
 
+This image demonstrates how the components are connected to the Raspberry Pi Pico W. The LCD and one soil moisture sensor share the same SDA and SCL pins because they operate on the same I2C bus, while the second sensor runs on a separate I2C bus. I noticed that both of the sensors cannot be running on the same bus, otherwise their addresses will collide with each other. I also included an image of the GPIO's for the Pico W that you can use as navigation when connecting the hardware, follow the steps bellow: 
 
-## Software 
+### Power the Pico W
 
-The project is written in MicroPython and runs on the Raspberry Pi Pico W.
+Computer -> USB Micro Male -> Pico W
 
-Main features:
+### Soil Moisture Sensor 1
 
-- Reads soil moisture from the two capacitive I2C sensors
-- Displays plant status on the LCD screen
-- Indicates soil condition using the LEDs
-- Triggers a buzzer when the soil becomes too dry
-- Prints sensor data to the serial terminal for debugging
+(I2C-bus 0)
 
-## Getting Started
+Sensor Pin	 Pico W Pin
+VCC	    ->     3.3V
+GND	    ->     GND
+SDA	    ->     GP4
+SCL	    ->     GP5
+
+#### Soil Moisture Sensor 2
+
+(I2C-bus 1)
+
+Sensor Pin	 Pico W Pin
+VCC	    ->     3.3V
+GND	    ->     GND
+SDA	    ->     GP2
+SCL     ->  	 GP3
+
+### LCD 16x2 (I2C)
+
+LCD shares with the second sensor on bus 1.
+
+LCD Pin	     Pico W Pin
+VCC	    ->     3.3V
+GND	    ->     GND
+SDA	    ->     GP2
+SCL	    ->     GP3
+
+### LED Status Indicators
+
+Every pot has three LEDs.
+
+Plant 1 LEDs: 
+LED Color	       Pico Pin
+Red (Dry)	   ->    GP14
+Yellow (OK)	 ->    GP15
+Blue (Wet)	 ->    GP16
+
+Plant 2 LEDs:
+LED Color	       Pico Pin
+Red (Dry)    ->	   GP17
+Yellow (OK)	 ->    GP18
+Blue (Wet)	 ->    GP19
+
+### ⚠️ Obs! dont forget
+
+Every LED should be connected like this:
+
+GPIO → resistor (220–330Ω) → LED → GND
+
+Short leg of the LED → GND
+
+### Connect the Buzzer
+
+Buzzer Pin	  Pico Pin
+    +	     ->    GP21
+    -      ->    GND
+
+### I2C Buses 
+Bus	       GPIO
+I2C0	->   GP4 (SDA), GP5 (SCL)
+I2C1	->   GP2 (SDA), GP3 (SCL)
+
+## Get Started
 
 Clone the repository:
 
