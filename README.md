@@ -57,7 +57,9 @@ The system is built using the following components:
 
 <img width="1024" height="576" alt="Raspberry_pi_pico_w_pinout-1-1024x576" src="https://github.com/user-attachments/assets/91dd4b81-a0a1-4fae-92fb-ebea0b97bd56" />
 
+
 <img width="3012" height="1740" alt="moisture_tracking_system_bb" src="https://github.com/user-attachments/assets/6fa65e25-7c38-4559-8b72-c534a8eefbc4" />
+
 
 This image demonstrates how the components are connected to the Raspberry Pi Pico W. The LCD and one soil moisture sensor share the same SDA and SCL pins because they operate on the same I2C bus, while the second sensor runs on a separate I2C bus. I noticed that both of the sensors cannot be running on the same bus, otherwise their addresses will collide with each other. I also included an image of the GPIO's for the Pico W that you can use as navigation when connecting the hardware, follow the steps bellow: 
 
@@ -85,7 +87,7 @@ Sensor Pin	   Pico W Pin
 - VCC	   ->     3.3V
 - GND	   ->     GND
 - SDA	   ->     GP2
-- SCL      ->  	  GP3
+- SCL    ->  	  GP3
 
 ### LCD 16x2 (I2C)
 
@@ -130,12 +132,13 @@ Short leg of the LED → GND
 
 Buzzer Pin	  Pico Pin
 
- -   +	     ->    GP21
- -   -      ->    GND
+ +	     ->     GP21
+ -      ->     GND
+
 
 ### I2C Buses 
 
-Bus	       GPIO
+Bus	        GPIO
 
 - I2C0	->   GP4 (SDA), GP5 (SCL)
 - I2C1	->   GP2 (SDA), GP3 (SCL)
