@@ -169,9 +169,9 @@ def leds_on():
     
 # ------------ CONNECT WIFI & HTTP-server ------------
 
-WIFI_SSID = "" 
-WIFI_PASSWORD = "" 
-SERVER_URL = "http://IP_ADRESS:PORT/api/moisture"
+WIFI_SSID = ""
+WIFI_PASSWORD = ""
+SERVER_URL = "http://IPADRESS:PORT/api/moisture"
 
 def connect_wifi():
     wlan = network.WLAN(network.STA_IF)
@@ -186,6 +186,8 @@ def connect_wifi():
         while not wlan.isconnected() and timeout > 0:
             print("Attempts left: ", timeout)
             lcd.set_cursor(0, 0); lcd.print("WiFi connecting")
+            lcd.set_cursor(1, 0); lcd.print("Standby...")
+            time.sleep(1)
             timeout -= 1
             
     if wlan.isconnected():
@@ -201,7 +203,6 @@ def connect_wifi():
         time.sleep(3)
         return False
 
-# Send the values to the Flask server on Pizero
 def send_to_server(sensor_name, moisture_value, protocol):
     data = {
         "sensor_name": sensor_name,
@@ -217,14 +218,14 @@ def send_to_server(sensor_name, moisture_value, protocol):
         print("HTTP error", e)
         
 # ------------- STARTUP SEQUENCE --------------
-# Start to connect Pico W to WiFi
+
 connect_wifi()
-# When thats done the sensors can start
+
 leds_off()
 lcd.clear()
 lcd.set_cursor(0, 0); lcd.print("moisture sensors")
 lcd.set_cursor(1, 0); lcd.print("are booting...")
-print("Starting LEDS and Sensors...")
+print("Starting LEDS...")
     
 for x in range(5):
     buzzer.on()   # sound the buzzer repeatedly
@@ -279,4 +280,3 @@ while True:
         lcd.print("check addr/wire")
 
     time.sleep(2)
-
