@@ -84,3 +84,87 @@ def get_moisture():
 if __name__ == "__main__":
     init_db()
     app.run(host="0.0.0.0", port=5000, debug=True)
+    
+#--------- Simple dashboard in Flask ---------
+
+# Displays the latest moisture readings realtime
+# Auto-refreshes every 2 seconds to show new data from the SQLite database
+@app.route("/dashboard")
+def dashbaord():
+    conn = get_db()
+    rows = conn.execute("""
+        SELECT id, sensor_name, moisture_value, protocol, created_at
+        FROM moisture_readings
+        ORDER BY id DESC
+        LIMIT 30
+    """).fetchall()
+    conn.close()
+
+    html = """
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Soil Moisture Dashboard</title>
+        <meta http-equiv="refresh" content="2">
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 30px;
+                background: #f4f4f4;
+            }
+            h1 {
+                color: #333;
+            }
+            table {
+                border-collapse: collapse;
+                width: 100%
+                background: white;
+            }
+            th, td {
+                padding: 10px;
+                border: 1px solid #ccc;
+                text-align: left;
+            }
+            th {
+                background: #333;
+                color: white;
+            }
+         </style>
+     </head>
+     <body>
+         <h1>Soil Moisture Dashboard</h1>
+         <p>Auto-refresh every 2 seconds</p>
+
+         <table>
+             <tr>
+                 <th>ID</th>
+                 <th>Sensor</th>
+                 <th>Moisture</th>
+                 <th>Protocol</th>
+                 <th>Timestamp</th>
+             </tr>
+    """
+
+    for row in rows:
+        html += f"""
+            <tr>
+                <td>{row["id"]}</td>
+                <td>{row["sensor_name"]}</td>
+                <td>{row["moisture_value"]}</td>
+                <td>{row["protocol"]}</td>
+                <td>{row["created_at"]}</td>
+            </tr>
+        """
+
+
+    html += """
+        </table>
+    </body>
+    </html>
+    """
+
+    return html
+
+if __name__ == "__main__":
+    init_db()
+    app.run(host="0.0.0.0", port=5000, debug=True)
